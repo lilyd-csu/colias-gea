@@ -1,0 +1,16 @@
+﻿x,y,site,elevation,pair,divide
+-105.85638,40.66277,LL,high,E1,east
+-105.06926,40.99582,SP,low,E1,east
+-105.48755,40.48606,NF,high,E2,east
+-105.1233,40.53881,SC,low,E2,east
+-105.83846,40.28101,HM,high,X,west
+-105.26971,40.15433,LF,low,X,east
+-105.32108,38.86602,HT,high,E3,east
+-104.700081,38.74506,FV,low,E3,east
+-106.62361,40.40549,DL,high,W1,west
+-107.19986,40.48171,CR,low,W1,west
+-107.355431,39.39437,BG,high,W2,west
+-107.44997,39.579319,OC,low,W2,west
+-107.21446,38.89614,KP,high,W3,west
+-107.61153,38.87611,MS,low,W3,west
+-106.21661,41.34944,Wy,high,NA,east

@@ -8,3 +8,5 @@ Code and workflow for bioinformatic processing and statistical analyses for the 
 3. Variant calling: GATK4 (used in manuscript)
 4. Genetic diversity and population structure analyses
 5. Genotype-environment association analyses (GEA)
+
+**Acknowledgement for computing:** All bioinformatic processing and analyses were completed using the RMACC Alpine computing cluster managed by Colorado State University and University of Colorado, Boulder.

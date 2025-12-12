@@ -11,7 +11,7 @@ raw_vcf <- "/scratch/alpine/ldurkee@colostate.edu/colias2023/RDA/colias.4x.merge
 colias_vcf <- read.PLINK(raw_vcf)
 
 ## load bioclim variables and elevation
-colias_clim.final <- read.csv("/scratch/alpine/ldurkee@colostate.edu/colias2023/RDA/colias_bioclim.MEM.csv")
+colias_clim.final <- read.csv("/scratch/alpine/ldurkee@colostate.edu/colias2023/RDA/colias_bioclim-elev.csv")
 
 paste("TRUE means VCF and env orders match")
 identical(colias_vcf$ind.names, as.character(colias_clim.final[,1])) 

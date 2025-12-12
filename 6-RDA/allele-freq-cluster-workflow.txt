@@ -1,0 +1,32 @@
+#replace the first two columns (FID and IID) of .ped file using the values from .fam file 
+
+paste <(cut -d' ' -f1,2 colias.4x.merged_gatk.rm.relate.SNP.filtered_gatkVQSR2.PASS.8miss.recode.vcf.gl_impute4.1.rm.WY.id-fix.fam) \
+      <(cut -d' ' -f3- colias.4x.merged_gatk.rm.relate.SNP.filtered_gatkVQSR2.PASS.8miss.recode.vcf.gl_impute4.1.rm.WY.ped) \
+      > colias.4x.merged_gatk.rm.relate.SNP.filtered_gatkVQSR2.PASS.8miss.recode.vcf.gl_impute4.1.rm.WY.id-fix.ped
+
+#check output
+cut -d' ' -f1,2 colias.4x.merged_gatk.rm.relate.SNP.filtered_gatkVQSR2.PASS.8miss.recode.vcf.gl_impute4.1.rm.WY.id-fix.ped
+
+#running allele frequency analysis with PLINK stratified by family (FID)
+
+plink --file colias.4x.merged_gatk.rm.relate.SNP.filtered_gatkVQSR2.PASS.8miss.recode.vcf.gl_impute4.1.rm.WY.id-fix \
+      --freq --family \
+      --out colias_freq_by_pop --aec
+
+
+## create CSV file of environmental variables to merge with allele freq file
+
+sort -k1,1 -k2,2n freq_env.results.bed > freq_env.results.sorted.bed
+
+bedtools closest -d -a freq_env.results.sort.bed -b GCF_905220415.1_ilColCroc2.1_genomic.gff_mRNA.sort > freq_env.results-genes-close.mRNA.bed
+
+
+# fix family IDs
+awk '{ $1 = substr($2, 1, 2); print }' colias.4x.merged_gatk.rm.relate.SNP.filtered_gatkVQSR2.PASS.8miss.recode.vcf.gl_impute4.1.rm.WY.subset.sigSNPs.v2.ped > colias.4x.merged_gatk.rm.relate.SNP.filtered_gatkVQSR2.PASS.8miss.recode.vcf.gl_impute4.1.rm.WY.subset.sigSNPs.FID.ped
+
+# check
+cut -d' ' -f1,2 colias.4x.merged_gatk.rm.relate.SNP.filtered_gatkVQSR2.PASS.8miss.recode.vcf.gl_impute4.1.rm.WY.subset.sigSNPs.FID.ped | head
+
+plink --file colias.4x.merged_gatk.rm.relate.SNP.filtered_gatkVQSR2.PASS.8miss.recode.vcf.gl_impute4.1.rm.WY.subset.sigSNPs.v2 \
+      --freq --family \
+      --out colias_freq_by_pop.RDA --aec
